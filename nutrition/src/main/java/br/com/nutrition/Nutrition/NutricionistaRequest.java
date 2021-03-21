@@ -1,64 +1,42 @@
 package br.com.nutrition.Nutrition;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public class NutricionistaRequest {
-	
-	@JsonProperty("nome_nutricionista")
+	@NotBlank
+	@JsonProperty("nome")
 	private String nome;
-	@JsonProperty("idade")
-	private LocalDate idade;
+
+	@NotNull
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate dataNascimento;
+
+	@NotBlank
 	@JsonProperty("codigo_registro")
 	private String codigoRegistro;
-	
-	@JsonProperty("id_paciente")
-	private Long idPaciente;
 
-	public NutricionistaRequest(String nome, Long idPaciente) {
 
+	public NutricionistaRequest(@NotBlank String nome, @NotNull LocalDate dataNascimento, @NotBlank String codigoRegistro) {
 		this.nome = nome;
-		this.idPaciente = idPaciente;
+		this.dataNascimento=dataNascimento;
+		this.codigoRegistro = codigoRegistro;
 	}
 
 	public NutricionistaRequest() {
 	}
 
-	public LocalDate getIdade() {
-		return idade;
-	}
-
-	public void setIdade(LocalDate idade) {
-		this.idade = idade;
-	}
-	public String getCodigoRegistro() {
-		return codigoRegistro;
-	}
-	public void setCodigoRegistro(String codigoRegistro) {
-		this.codigoRegistro = codigoRegistro;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public Long getIdPaciente() {
-		return idPaciente;
-	}
-	public void setIdPaciente(Long idPaciente) {
-		this.idPaciente = idPaciente;
-	}
-
-	public Nutricionista toModel(){
-		return new Nutricionista(nome,idade,codigoRegistro,idPaciente);
+	public Nutricionista toModelo(){
+		return new Nutricionista(nome,dataNascimento,codigoRegistro);
 	}
 	@Override
 	public String toString() {
-		return "NutricionistaResource [nome=" + nome + ", idade=" + idade + ", codigoRegistro=" + codigoRegistro
-				+ ", idPaciente=" + idPaciente + "]";
+		return "NutricionistaResource [nome=" + nome + ", dataNascimento=" + dataNascimento + ", codigoRegistro=" + codigoRegistro
+				+ "]";
 	}
 
 }

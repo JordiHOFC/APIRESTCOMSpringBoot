@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping(value="/api/nutricionista")
@@ -26,7 +28,7 @@ public class NutricionistaController {
 		return repository.findAll();
 	}
 
-	@GetMapping(path="/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<?> buscarPorId(@PathVariable(name="id",required = true)Long id) {
 		Optional<Nutricionista> nutricionista=repository.findById(id);
 		if(nutricionista.isEmpty()){
@@ -37,12 +39,12 @@ public class NutricionistaController {
 
 
 	@PostMapping
-	public void salvar(@RequestBody NutricionistaRequest nutricionista) {
-		Nutricionista nutri= nutricionista.toModel();
+	public void salvar(@RequestBody @Valid NutricionistaRequest nutricionista) {
+		Nutricionista nutri= nutricionista.toModelo();
 		repository.save(nutri);
 	}
 
-	@DeleteMapping(path="/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deletarNutrucionistaPorId(@PathVariable(name="id",required = true)Long id) {
 		Optional<Nutricionista> nutri = repository.findById(id);
 		if (nutri.isEmpty()) {
