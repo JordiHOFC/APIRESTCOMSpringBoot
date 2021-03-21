@@ -1,4 +1,4 @@
-package br.com.nutrition.datasource.model;
+package br.com.nutrition.Nutrition;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -16,9 +16,7 @@ public class Nutricionista implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	//@Column(name="name")
 	private String nome;
-	
 	private LocalDate idade;
 	@Column(name="codigo_registro")
 	private String codigoRegistro;
@@ -29,7 +27,12 @@ public class Nutricionista implements Serializable{
 		
 	}
 
-	
+	public Nutricionista(String nome, LocalDate idade, String codigoRegistro, Long idPaciente) {
+		this.nome = nome;
+		this.idade = idade;
+		this.codigoRegistro = codigoRegistro;
+		this.idPaciente = idPaciente;
+	}
 
 	public String getNome() {
 		return nome;

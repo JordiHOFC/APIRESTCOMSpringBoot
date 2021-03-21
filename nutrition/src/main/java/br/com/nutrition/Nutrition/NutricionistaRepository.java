@@ -1,8 +1,6 @@
-package br.com.nutrition.repository;
+package br.com.nutrition.Nutrition;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import br.com.nutrition.datasource.model.Nutricionista;
 
 public interface NutricionistaRepository extends JpaRepository<Nutricionista,Long>{
 
