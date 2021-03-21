@@ -45,7 +45,7 @@ public class Paciente {
                 ", nome='" + nome + '\'' +
                 ", cpf='" + cpf + '\'' +
                 ", dataNascimento=" + dataNascimento +
-                ", enderecos=" + enderecos +
+                ", enderecos=" + enderecos.stream().toString() +
                 '}';
     }
 }

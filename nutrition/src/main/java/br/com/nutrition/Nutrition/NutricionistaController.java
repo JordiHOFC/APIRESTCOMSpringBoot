@@ -34,14 +34,14 @@ public class NutricionistaController {
 		if(nutricionista.isEmpty()){
 			return ResponseEntity.notFound().build();
 		}
-		return ResponseEntity.ok(nutricionista.get());
+		return ResponseEntity.ok(nutricionista.get().toString());
 	}
 
 
 	@PostMapping
-	public void salvar(@RequestBody @Valid NutricionistaRequest nutricionista) {
+	public ResponseEntity<?> salvar(@RequestBody @Valid NutricionistaRequest nutricionista) {
 		Nutricionista nutri= nutricionista.toModelo();
-		repository.save(nutri);
+		return ResponseEntity.ok(repository.save(nutri).toString());
 	}
 
 	@DeleteMapping("/{id}")
