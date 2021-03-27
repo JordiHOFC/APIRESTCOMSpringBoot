@@ -2,6 +2,8 @@ package br.com.nutrition.Nutricionista;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +26,8 @@ public class NutricionistaController {
 	private NutricionistaRepository repository;
 	
 	@GetMapping
-	public List<Nutricionista> buscarTodosNutricionistas() {
-		return repository.findAll();
+	public List<NutricionistaResponse> buscarTodosNutricionistas() {
+		return repository.findAll().stream().map(NutricionistaResponse::new).collect(Collectors.toList());
 	}
 
 	@GetMapping("/{id}")
