@@ -1,6 +1,7 @@
 package br.com.nutrition.Paciente;
 
 import br.com.nutrition.Endereco.EnderecoRequest;
+import br.com.nutrition.validator.ExistRegister;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.br.CPF;
@@ -18,6 +19,7 @@ public class PacienteRequest {
     @NotBlank
     @CPF
     @JsonProperty("cpf")
+    @ExistRegister(domainClass = Paciente.class,field = "cpf")
     private String cpf;
     @NotNull
     @JsonFormat(pattern = "dd/MM/yyyy")

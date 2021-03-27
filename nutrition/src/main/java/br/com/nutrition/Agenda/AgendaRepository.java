@@ -1,4 +1,4 @@
-package br.com.nutrition.agenda;
+package br.com.nutrition.Agenda;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,4 +1,4 @@
-package br.com.nutrition.agenda;
+package br.com.nutrition.Agenda;
 
 import br.com.nutrition.Consulta.Consulta;
 import br.com.nutrition.Nutricionista.Nutricionista;

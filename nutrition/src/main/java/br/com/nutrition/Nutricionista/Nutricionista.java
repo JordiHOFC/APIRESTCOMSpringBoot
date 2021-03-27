@@ -1,6 +1,6 @@
 package br.com.nutrition.Nutricionista;
 
-import br.com.nutrition.agenda.Agenda;
+import br.com.nutrition.Agenda.Agenda;
 
 import java.time.LocalDate;
 
