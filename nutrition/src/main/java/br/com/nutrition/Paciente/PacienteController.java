@@ -17,7 +17,7 @@ public class PacienteController {
     @PostMapping
     public ResponseEntity<?> cadastrarPaciente(@RequestBody @Valid PacienteRequest pacienteRequest){
         Paciente paciente= pacienteRequest.toModelo();
-        repository.save(paciente);
-        return ResponseEntity.ok(paciente.toString());
+        PacienteResponse pacienteResponse= new PacienteResponse(repository.save(paciente));
+        return ResponseEntity.ok(pacienteResponse);
     }
 }

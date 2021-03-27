@@ -1,12 +1,8 @@
-package br.com.nutrition.Nutrition;
+package br.com.nutrition.Nutricionista;
 
-import br.com.nutrition.Paciente.Paciente;
 import br.com.nutrition.agenda.Agenda;
 
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.*;
 

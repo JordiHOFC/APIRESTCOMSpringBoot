@@ -1,4 +1,4 @@
-package br.com.nutrition.Nutrition;
+package br.com.nutrition.Nutricionista;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,14 +34,15 @@ public class NutricionistaController {
 		if(!nutricionista.isPresent()){
 			return ResponseEntity.notFound().build();
 		}
-		return ResponseEntity.ok(nutricionista.get().toString());
+
+		return ResponseEntity.ok(new NutricionistaResponse(nutricionista.get()));
 	}
 
 
 	@PostMapping
 	public ResponseEntity<?> salvar(@RequestBody @Valid NutricionistaRequest nutricionista) {
 		Nutricionista nutri= nutricionista.toModelo();
-		return ResponseEntity.ok(repository.save(nutri).toString());
+		return ResponseEntity.ok(new NutricionistaResponse(repository.save(nutri)));
 	}
 
 	@DeleteMapping("/{id}")

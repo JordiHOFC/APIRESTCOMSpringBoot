@@ -1,7 +1,6 @@
 package br.com.nutrition.Paciente;
 
 import br.com.nutrition.Endereco.Endereco;
-import br.com.nutrition.Nutrition.Nutricionista;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -33,6 +32,14 @@ public class Paciente {
     }
 
     public Paciente() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
     }
 
     @Override

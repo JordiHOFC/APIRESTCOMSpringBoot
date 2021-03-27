@@ -1,4 +1,4 @@
-package br.com.nutrition.Nutrition;
+package br.com.nutrition.Nutricionista;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;

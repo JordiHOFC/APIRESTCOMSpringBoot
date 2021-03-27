@@ -1,11 +1,10 @@
 package br.com.nutrition.agenda;
 
 import br.com.nutrition.Consulta.Consulta;
-import br.com.nutrition.Nutrition.Nutricionista;
+import br.com.nutrition.Nutricionista.Nutricionista;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "agenda")

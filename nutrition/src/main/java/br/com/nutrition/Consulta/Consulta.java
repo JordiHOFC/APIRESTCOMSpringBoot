@@ -1,6 +1,6 @@
 package br.com.nutrition.Consulta;
 
-import br.com.nutrition.Nutrition.Nutricionista;
+import br.com.nutrition.Nutricionista.Nutricionista;
 import br.com.nutrition.Paciente.Paciente;
 
 import javax.persistence.*;
