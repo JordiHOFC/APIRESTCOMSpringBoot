@@ -25,9 +25,6 @@ public class Paciente {
     @JoinColumn(nullable = false)
     private List<Endereco> enderecos;
 
-    @ManyToOne
-    private Nutricionista nutricionista;
-
     public Paciente(String nome, String cpf, LocalDate dataNascimento, List<Endereco> enderecos) {
         this.nome = nome;
         this.cpf = cpf;

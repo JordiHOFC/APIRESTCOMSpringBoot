@@ -1,6 +1,7 @@
 package br.com.nutrition.Nutrition;
 
 import br.com.nutrition.Paciente.Paciente;
+import br.com.nutrition.agenda.Agenda;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -25,9 +26,8 @@ public class Nutricionista {
 
 	@Column(name="codigo_registro",nullable = false,unique = true)
 	private String codigoRegistro;
-
-	@OneToMany(mappedBy = "nutricionista")
-	private List<Paciente> pacientes=new ArrayList<>();
+	@OneToOne(mappedBy = "nutricionista")
+	private Agenda agenda;
 
 	public Nutricionista() {
 		

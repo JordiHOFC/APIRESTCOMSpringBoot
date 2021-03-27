@@ -31,7 +31,7 @@ public class NutricionistaController {
 	@GetMapping("/{id}")
 	public ResponseEntity<?> buscarPorId(@PathVariable(name="id",required = true)Long id) {
 		Optional<Nutricionista> nutricionista=repository.findById(id);
-		if(nutricionista.isEmpty()){
+		if(!nutricionista.isPresent()){
 			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(nutricionista.get().toString());
@@ -47,7 +47,7 @@ public class NutricionistaController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deletarNutrucionistaPorId(@PathVariable(name="id",required = true)Long id) {
 		Optional<Nutricionista> nutri = repository.findById(id);
-		if (nutri.isEmpty()) {
+		if (!nutri.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}
 		repository.deleteById(id);
