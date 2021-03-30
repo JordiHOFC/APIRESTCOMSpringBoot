@@ -11,6 +11,11 @@ public class ErrosResponse {
         this.erro = error.getDefaultMessage();
     }
 
+    public ErrosResponse(String campo, String erro) {
+        this.campo = campo;
+        this.erro = erro;
+    }
+
     public String getCampo() {
         return campo;
     }

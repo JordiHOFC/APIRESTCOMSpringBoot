@@ -1,31 +1,26 @@
 package br.com.nutrition.validator;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.util.List;
 
-public class ExistRegisterValidator implements ConstraintValidator<ExistRegister,String> {
+public class ExistRegisterValidator implements ConstraintValidator<ExistRegister,Long> {
     private Class<?> classe;
-    private String atributo;
     @PersistenceContext
     private EntityManager manager;
 
     @Override
     public void initialize(ExistRegister constraintAnnotation) {
         this.classe=constraintAnnotation.domainClass();
-        this.atributo= constraintAnnotation.field();
     }
 
     @Override
-    public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-      String jpql="select 1 from "+classe.getName()+" where "+atributo+" =:s";
-      Query query= manager.createQuery(jpql);
-      query.setParameter("s",s);
-      List<?> result=query.getResultList();
-      return result.isEmpty();
+    public boolean isValid(Long aLong, ConstraintValidatorContext constraintValidatorContext) {
+        String jpql="select r from "+classe.getName()+" r where r.id = :id";
+        Query query= manager.createQuery(jpql);
+        query.setParameter("id",aLong);
+        return query.getSingleResult()!=null;
     }
 }

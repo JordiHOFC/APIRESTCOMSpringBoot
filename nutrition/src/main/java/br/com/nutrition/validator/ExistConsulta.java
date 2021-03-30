@@ -5,12 +5,11 @@ import javax.validation.Payload;
 import java.lang.annotation.*;
 
 @Documented
-@Target(ElementType.FIELD)
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = ExistRegisterValidator.class)
-public @interface ExistRegister {
-    String message() default "Não existe cadastro referente a este identetificador.";
+@Constraint(validatedBy = ExistConsultaValidator.class)
+public @interface ExistConsulta {
+    String message() default "Horario indisponivel";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
-    Class<?> domainClass();
 }

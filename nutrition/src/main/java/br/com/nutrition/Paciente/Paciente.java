@@ -31,6 +31,10 @@ public class Paciente {
         this.enderecos = enderecos;
     }
 
+    public Paciente(Long id) {
+        this.id = id;
+    }
+
     public Paciente() {
     }
 

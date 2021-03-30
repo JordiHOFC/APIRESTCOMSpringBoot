@@ -35,6 +35,14 @@ public class Nutricionista {
 		this.codigoRegistro = codigoRegistro;
 	}
 
+	public Nutricionista(Long id) {
+		this.id = id;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
 	public String getNome() {
 		return nome;
 	}

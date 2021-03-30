@@ -18,7 +18,10 @@ public class HandlerInterceptError {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiError methodNotValid(MethodArgumentNotValidException e){
         List<FieldError> errors=e.getFieldErrors();
-        return new ApiError(errors.stream().map(ErrosResponse::new).collect(Collectors.toList()));
+        List<ErrosResponse> allErrors=new ArrayList<>();
+        allErrors.addAll(errors.stream().map(ErrosResponse::new).collect(Collectors.toList()));
+        allErrors.addAll(e.getGlobalErrors().stream().map(er->new ErrosResponse(er.getObjectName(),er.getDefaultMessage().toString())).collect(Collectors.toList()));
+        return new ApiError(allErrors);
 
     }
 }

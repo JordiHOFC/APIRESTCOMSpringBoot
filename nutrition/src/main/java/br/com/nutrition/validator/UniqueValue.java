@@ -5,12 +5,13 @@ import javax.validation.Payload;
 import java.lang.annotation.*;
 
 @Documented
-@Target(ElementType.FIELD)
+@Constraint(validatedBy = UniqueValueValidator.class)
+@Target(value = {ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = ExistRegisterValidator.class)
-public @interface ExistRegister {
-    String message() default "Não existe cadastro referente a este identetificador.";
+public @interface UniqueValue {
+    String message() default "Esta registro já existe no sistema.";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
     Class<?> domainClass();
+    String field();
 }

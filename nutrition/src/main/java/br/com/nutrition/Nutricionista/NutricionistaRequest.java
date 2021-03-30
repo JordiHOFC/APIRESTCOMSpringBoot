@@ -1,6 +1,6 @@
 package br.com.nutrition.Nutricionista;
 
-import br.com.nutrition.validator.ExistRegister;
+import br.com.nutrition.validator.UniqueValue;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -19,7 +19,7 @@ public class NutricionistaRequest {
 
 	@NotBlank
 	@JsonProperty("codigo_registro")
-	@ExistRegister(domainClass = Nutricionista.class,field = "codigoRegistro")
+	@UniqueValue(domainClass = Nutricionista.class,field = "codigoRegistro")
 	private String codigoRegistro;
 
 

@@ -5,6 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/pacientes")
@@ -19,5 +21,10 @@ public class PacienteController {
         Paciente paciente= pacienteRequest.toModelo();
         PacienteResponse pacienteResponse= new PacienteResponse(repository.save(paciente));
         return ResponseEntity.ok(pacienteResponse);
+    }
+
+    @GetMapping
+    public List<PacienteResponse> listarPacientes(){
+        return repository.findAll().stream().map(PacienteResponse::new).collect(Collectors.toList());
     }
 }
