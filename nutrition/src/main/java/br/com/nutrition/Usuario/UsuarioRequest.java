@@ -1,6 +1,8 @@
 package br.com.nutrition.Usuario;
 
+import br.com.nutrition.Validator.UniqueValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.constraints.Email;
@@ -8,10 +10,12 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class UsuarioRequest {
+
     @JsonProperty("nome")
     @NotBlank
     private String nome;
     @JsonProperty("email")
+    @UniqueValue(domainClass = Usuario.class, field = "email")
     @NotBlank
     @Email
     private String email;
