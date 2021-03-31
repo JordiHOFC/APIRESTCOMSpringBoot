@@ -1,7 +1,7 @@
 package br.com.nutrition.Paciente;
 
 import br.com.nutrition.Endereco.EnderecoRequest;
-import br.com.nutrition.validator.UniqueValue;
+import br.com.nutrition.Validator.UniqueValue;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.br.CPF;

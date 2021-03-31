@@ -16,8 +16,6 @@ public class Paciente {
 
     @Column(unique = true,nullable = false)
     private String cpf;
-    @Column(nullable = false, length = 16)
-    private String senha;
 
     @Column(nullable = false)
     private LocalDate dataNascimento;

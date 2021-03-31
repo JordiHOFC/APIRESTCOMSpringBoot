@@ -1,4 +1,4 @@
-package br.com.nutrition.validator;
+package br.com.nutrition.Validator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

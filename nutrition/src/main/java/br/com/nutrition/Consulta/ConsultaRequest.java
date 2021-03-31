@@ -3,8 +3,8 @@ package br.com.nutrition.Consulta;
 import br.com.nutrition.Nutricionista.Nutricionista;
 import br.com.nutrition.Paciente.Paciente;
 
-import br.com.nutrition.validator.ExistConsulta;
-import br.com.nutrition.validator.ExistRegister;
+import br.com.nutrition.Validator.ExistConsulta;
+import br.com.nutrition.Validator.ExistRegister;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

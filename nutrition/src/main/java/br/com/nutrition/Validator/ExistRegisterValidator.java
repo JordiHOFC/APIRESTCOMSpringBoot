@@ -1,4 +1,4 @@
-package br.com.nutrition.validator;
+package br.com.nutrition.Validator;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

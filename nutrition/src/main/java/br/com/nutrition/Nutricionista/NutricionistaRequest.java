@@ -1,6 +1,6 @@
 package br.com.nutrition.Nutricionista;
 
-import br.com.nutrition.validator.UniqueValue;
+import br.com.nutrition.Validator.UniqueValue;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 

@@ -1,4 +1,4 @@
-package br.com.nutrition.validator;
+package br.com.nutrition.Validator;
 
 import br.com.nutrition.Consulta.Consulta;
 import br.com.nutrition.Consulta.ConsultaRepository;
