@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDateTime;
 
 public class ConsultaReponse {
+
     @JsonProperty("id")
     private Long id;
     @JsonProperty("paciente")
@@ -22,7 +23,6 @@ public class ConsultaReponse {
         this.nutricionista=consulta.getNutricionista().getId();
         this.paciente=consulta.getPaciente().getId();
         this.horario=consulta.getHorario();
-
     }
 
 }

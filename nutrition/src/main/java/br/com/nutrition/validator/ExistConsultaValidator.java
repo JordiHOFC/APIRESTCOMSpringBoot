@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Optional;
 
 public class ExistConsultaValidator implements ConstraintValidator<ExistConsulta, ConsultaRequest> {
@@ -18,8 +16,7 @@ public class ExistConsultaValidator implements ConstraintValidator<ExistConsulta
 
     @Override
     public boolean isValid(ConsultaRequest consultaRequest, ConstraintValidatorContext constraintValidatorContext) {
-        LocalDateTime time=LocalDateTime.parse(consultaRequest.getHorario(),  DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-
+        LocalDateTime time = consultaRequest.getHorario();
         Optional<Consulta> ultimaConsulta=repository.findFirstConsultaByNutricionistaIdOrderByIdDesc(consultaRequest.getIdNutricionista());
         if(ultimaConsulta.isPresent()){
             Integer horaRequest=time.getHour();

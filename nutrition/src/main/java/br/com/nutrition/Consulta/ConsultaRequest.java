@@ -5,18 +5,14 @@ import br.com.nutrition.Paciente.Paciente;
 
 import br.com.nutrition.validator.ExistConsulta;
 import br.com.nutrition.validator.ExistRegister;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import org.springframework.data.convert.Jsr310Converters;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotBlank;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+
 
 ;import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 
 @ExistConsulta
 public class ConsultaRequest {
@@ -25,14 +21,15 @@ public class ConsultaRequest {
     @ExistRegister(domainClass = Paciente.class)
     private Long idPaciente;
 
-    @NotBlank
-    private String horario;
+    @NotNull
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime horario;
 
     @NotNull
     @ExistRegister(domainClass = Nutricionista.class)
     private Long idNutricionista;
 
-    public ConsultaRequest(@NotNull Long idPaciente, String horario, @NotNull Long idNutricionista) {
+    public ConsultaRequest(@NotNull Long idPaciente, LocalDateTime horario, @NotNull Long idNutricionista) {
         this.idPaciente = idPaciente;
         this.horario = horario;
         this.idNutricionista = idNutricionista;
@@ -45,7 +42,8 @@ public class ConsultaRequest {
         return idPaciente;
     }
 
-    public String getHorario() {
+
+    public LocalDateTime getHorario() {
         return horario;
     }
 
@@ -53,12 +51,8 @@ public class ConsultaRequest {
         return idNutricionista;
     }
 
-    public void setHorario(String horario) {
-        this.horario = horario;
-    }
 
     public Consulta toModelo(){
-        LocalDateTime time=LocalDateTime.parse(this.horario, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        return new Consulta(time,new Paciente(this.idPaciente),new Nutricionista(this.idNutricionista));
+        return new Consulta(this.horario,new Paciente(this.idPaciente),new Nutricionista(this.idNutricionista));
     }
 }

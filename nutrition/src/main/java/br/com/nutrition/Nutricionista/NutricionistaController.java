@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,15 +27,15 @@ public class NutricionistaController {
 	@Autowired
 	private NutricionistaRepository repository;
 	
-	@GetMapping
-	public List<NutricionistaResponse> buscarTodosNutricionistas() {
-		return repository.findAll().stream().map(NutricionistaResponse::new).collect(Collectors.toList());
+	@GetMapping @Cacheable("nutricionistas")
+	public ResponseEntity<?> buscarTodosNutricionistas() {
+		return ResponseEntity.ok(repository.findAll().stream().map(NutricionistaResponse::new).collect(Collectors.toList()));
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<?> buscarPorId(@PathVariable(name="id",required = true)Long id) {
 		Optional<Nutricionista> nutricionista=repository.findById(id);
-		if(!nutricionista.isPresent()){
+		if(nutricionista.isEmpty()){
 			return ResponseEntity.notFound().build();
 		}
 
@@ -41,16 +43,16 @@ public class NutricionistaController {
 	}
 
 
-	@PostMapping
+	@PostMapping @CacheEvict(value = "nutricionistas",allEntries = true)
 	public ResponseEntity<?> salvar(@RequestBody @Valid NutricionistaRequest nutricionista) {
 		Nutricionista nutri= nutricionista.toModelo();
 		return ResponseEntity.ok(new NutricionistaResponse(repository.save(nutri)));
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{id}") @CacheEvict(value = "nutricionistas",allEntries = true)
 	public ResponseEntity<?> deletarNutrucionistaPorId(@PathVariable(name="id",required = true)Long id) {
 		Optional<Nutricionista> nutri = repository.findById(id);
-		if (!nutri.isPresent()) {
+		if (nutri.isEmpty()) {
 			return ResponseEntity.notFound().build();
 		}
 		repository.deleteById(id);
